@@ -1,0 +1,242 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    list-style: none;
+}
+
+body {
+    font-family: sans-serif;
+    background-color: #f5f5f5;
+    min-height: 200vh;
+}
+
+header {
+    background-color: aquamarine;
+    display: flex;
+    justify-content: space-between;
+    padding: 20px 120px;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    transition: background .4s, backdrop-filter .4s, box-shadow .4s;
+}
+
+header.scrolled {
+    background-color: rgba(127, 255, 212, 0.35);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    box-shadow: 0 2px 24px rgba(0, 0, 0, 0.08);
+}
+
+.logo {
+    font-size: 36px;
+    color: black;
+}
+
+header > a {
+    color: black;
+    font-size: 15px;
+}
+
+nav {
+    display: flex;
+    gap: 12px;
+}
+
+nav a {
+    color: black;
+    font-size: 15px;
+    position: relative;
+    padding-bottom: 3px;
+}
+
+nav a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: black;
+    transition: width .3s ease;
+}
+
+nav a:hover::after {
+    width: 100%;
+}
+
+.menu {
+    display: none;
+    flex-direction: column;
+    gap: 8px;
+    cursor: pointer;
+    padding: 10px;
+    border-radius: 4px;
+    transition: background .3s;
+}
+
+.menu:hover {
+    background-color: blueviolet;
+}
+
+.menu div {
+    width: 36px;
+    height: 5px;
+    background-color: black;
+    border-radius: 100px;
+    transition: all .35s ease;
+}
+
+.menu.open div:nth-child(1) { transform: translateY(13px) rotate(45deg); }
+.menu.open div:nth-child(2) { opacity: 0; }
+.menu.open div:nth-child(3) { transform: translateY(-13px) rotate(-45deg); }
+
+.nav-mobile {
+    display: none;
+    flex-direction: column;
+    position: fixed;
+    top: 77px;
+    left: 0;
+    right: 0;
+    background: rgba(127, 255, 212, 0.7);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    z-index: 99;
+    animation: slideDown .25s ease;
+}
+
+.nav-mobile.open {
+    display: flex;
+}
+
+.nav-mobile a {
+    color: black;
+    font-size: 16px;
+    padding: 16px 24px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.nav-mobile a:hover {
+    background: rgba(0, 0, 0, 0.05);
+}
+
+@keyframes slideDown {
+    from { opacity: 0; transform: translateY(-10px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+main {
+    width: 100%;
+    padding: 0 24px;
+}
+
+#home {
+    max-width: 1200px;
+    display: flex;
+    align-items: center;
+    margin: auto;
+    justify-content: space-between;
+    padding: 80px 0;
+    gap: 40px;
+}
+
+.lado-esquerdo {
+    width: 464px;
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    opacity: 0;
+    transform: translateY(28px);
+    animation: fadeUp .7s ease .1s forwards;
+}
+
+.lado-esquerdo h1 {
+    font-size: 48px;
+    line-height: 1.15;
+}
+
+.lado-esquerdo p {
+    font-size: 16px;
+    line-height: 1.7;
+    color: #444;
+}
+
+.lado-esquerdo button {
+    width: fit-content;
+    padding: 14px 32px;
+    background: black;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 15px;
+    cursor: pointer;
+    transition: background .25s, transform .2s;
+}
+
+.lado-esquerdo button:hover {
+    background: blueviolet;
+    transform: translateY(-2px);
+}
+
+#home img {
+    width: 100%;
+    max-width: 400px;
+    height: auto;
+    border-radius: 16px;
+    opacity: 0;
+    animation: fadeUp .7s ease .3s forwards;
+}
+
+@keyframes fadeUp {
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@media screen and (max-width: 1024px) {
+    header { padding: 20px 40px; }
+
+    .lado-esquerdo {
+        width: 100%;
+        max-width: 420px;
+    }
+
+    .lado-esquerdo h1 { font-size: 38px; }
+}
+
+@media screen and (max-width: 768px) {
+    header { padding: 20px 20px; }
+
+    nav { display: none; }
+    header > a:not(.logo) { display: none; }
+
+    .menu { display: flex; }
+
+    #home {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 40px 0 60px;
+        gap: 32px;
+    }
+
+    .lado-esquerdo {
+        width: 100%;
+        max-width: 100%;
+        gap: 24px;
+    }
+
+    .lado-esquerdo h1 { font-size: 32px; }
+
+    .lado-esquerdo button {
+        width: 100%;
+        text-align: center;
+    }
+
+    #home img { max-width: 100%; }
+}
+
+@media screen and (max-width: 400px) {
+    .logo { font-size: 26px; }
+    .lado-esquerdo h1 { font-size: 26px; }
+}

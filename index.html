@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aula Responsividade</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header id="header">
+        <a href="#" class="logo">LogoK</a>
+        <a href="#">Kaua</a>
+        <nav>
+            <a href="#">Home</a>
+            <a href="#">Blog</a>
+            <a href="#">Support</a>
+            <a href="#">Chat</a>
+        </nav>
+        <div class="menu" id="menuBtn" onclick="toggleMenu()">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </header>
+
+    <nav class="nav-mobile" id="navMobile">
+        <a href="#" onclick="toggleMenu()">Home</a>
+        <a href="#" onclick="toggleMenu()">Blog</a>
+        <a href="#" onclick="toggleMenu()">Support</a>
+        <a href="#" onclick="toggleMenu()">Chat</a>
+    </nav>
+
+    <main>
+        <section id="home">
+            <div class="lado-esquerdo">
+                <h1>Aula Responsividade</h1>
+                <p>Lorem ipsum dolor sit amet consectetur adipiscing it elit. Laboriosam labore in ea optio reprehenderit rerum! Maiores dolores nisi vel repellendus eius? Temporibus reprehenderit eum natus nihil iste distinctio nam exercitationem!</p>
+                <button>Treino</button>
+            </div>
+            <img src="img/8 Image.png" alt="Imagem Principal">
+        </section>
+    </main>
+
+    <script>
+        window.addEventListener('scroll', function () {
+            document.getElementById('header').classList.toggle('scrolled', window.scrollY > 10);
+        });
+
+        function toggleMenu() {
+            document.getElementById('menuBtn').classList.toggle('open');
+            document.getElementById('navMobile').classList.toggle('open');
+        }
+
+        document.addEventListener('click', function (e) {
+            const btn = document.getElementById('menuBtn');
+            const nav = document.getElementById('navMobile');
+            if (!btn.contains(e.target) && !nav.contains(e.target)) {
+                btn.classList.remove('open');
+                nav.classList.remove('open');
+            }
+        });
+    </script>
+
+</body>
+</html>
